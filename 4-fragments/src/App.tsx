@@ -2,6 +2,7 @@ import ErrorMessage from "./components/ErrorMessage";
 import FoodItems from "./components/FoodItems";
 import "./App.css";
 import Container from "./components/Container";
+import FoodInput from "./components/FoodInput";
 
 function App() {
   let foodItems = ["Fruits", "Vegetables", "Rice", "Meat", "Egg", "Milk"];
@@ -10,6 +11,7 @@ function App() {
       <Container>
         <h1>Healthy Foods</h1>
         <ErrorMessage items={foodItems}></ErrorMessage>
+        <FoodInput></FoodInput>
         <FoodItems items={foodItems}></FoodItems>
       </Container>
 

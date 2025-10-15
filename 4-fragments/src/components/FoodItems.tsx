@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Item from "./Item";
 
 export type FoodItemsProps = {
@@ -5,13 +6,21 @@ export type FoodItemsProps = {
 };
 
 const FoodItems = ({ items }: FoodItemsProps) => {
+  let [activeItems, setActiveItems] = useState([]);
+
+  let onBuyButton = (item: any, event: any) => {
+    let newItems = [...activeItems, item];
+    setActiveItems(newItems);
+  };
+
   return (
     <ul className="list-group">
       {items.map((item) => (
         <Item
           key={item}
           foodItem={item}
-          handleBuyButton={() => console.log(`${item} bought`)}
+          bought={activeItems.includes(item)}
+          handleBuyButton={(event: any) => onBuyButton(item, event)}
         ></Item>
       ))}
     </ul>

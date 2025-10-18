@@ -1,13 +1,17 @@
 import TodoItem from "./TodoItem";
-import styles from './TodoItems.module.css';
+import styles from "./TodoItems.module.css";
 
-function TodoItems({ todoItems }: any) {
+function TodoItems({ todoItems, onDeleteClick }: any) {
   return (
-      <div className={styles.itemsContainer}>
-        {todoItems.map((item: any) => (
-          <TodoItem todoName={item.name} todoDate={item.dueDate}></TodoItem>
-        ))}
-      </div>
+    <div className={styles.itemsContainer}>
+      {todoItems.map((item: any) => (
+        <TodoItem
+          todoName={item.name}
+          todoDate={item.dueDate}
+          onDeleteClick={onDeleteClick}
+        ></TodoItem>
+      ))}
+    </div>
   );
 }
 

@@ -6,6 +6,7 @@ function TodoItems({ todoItems, onDeleteClick }: any) {
     <div className={styles.itemsContainer}>
       {todoItems.map((item: any) => (
         <TodoItem
+          key={item.name}
           todoName={item.name}
           todoDate={item.dueDate}
           onDeleteClick={onDeleteClick}

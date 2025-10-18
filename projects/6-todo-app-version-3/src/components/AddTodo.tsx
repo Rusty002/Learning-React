@@ -1,8 +1,9 @@
 import { useState, type BaseSyntheticEvent } from "react";
+import { MdOutlineAddComment } from "react-icons/md";
 
 function AddTodo({ onNewItem }: any) {
-  const [todoName, setTodoName] = useState();
-  const [todoDate, setTodoDate] = useState();
+  const [todoName, setTodoName] = useState("");
+  const [todoDate, setTodoDate] = useState("");
 
   const handleTodoInputNameChange = (event: BaseSyntheticEvent) => {
     setTodoName(event.target.value);
@@ -42,7 +43,7 @@ function AddTodo({ onNewItem }: any) {
             type="button"
             className="btn btn-success kg-button"
           >
-            Add
+            <MdOutlineAddComment />
           </button>
         </div>
       </div>

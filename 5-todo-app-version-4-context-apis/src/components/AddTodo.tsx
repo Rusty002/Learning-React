@@ -1,7 +1,9 @@
-import { useRef, type BaseSyntheticEvent } from "react";
+import { useContext, useRef, type BaseSyntheticEvent } from "react";
 import { MdOutlineAddComment } from "react-icons/md";
+import { TodoItemsContext } from "../store/todo-items-store";
 
 function AddTodo({ onNewItem }: any) {
+  const { addNewItem } = useContext(TodoItemsContext);
   const todoNameElement = useRef("");
   const todoDateElement = useRef("");
 
@@ -11,7 +13,7 @@ function AddTodo({ onNewItem }: any) {
     const todoDate = todoDateElement.current.value;
     todoNameElement.current.value = "";
     todoDateElement.current.value = "";
-    onNewItem(todoName, todoDate);
+    addNewItem(todoName, todoDate);
   };
 
   return (

@@ -1,4 +1,4 @@
-const Sidebar = () => {
+const Sidebar = ({ selectedTab, setSelectedTab }: any) => {
   return (
     <>
       <div
@@ -24,9 +24,15 @@ const Sidebar = () => {
         <hr />{" "}
         <ul className="nav nav-pills flex-column mb-auto">
           {" "}
-          <li className="nav-item">
+          <li className="nav-item" onClick={() => setSelectedTab("Home")}>
             {" "}
-            <a href="#" className="nav-link active" aria-current="page">
+            <a
+              href="#"
+              className={`nav-link text-white ${
+                selectedTab === "Home" && "active"
+              }`}
+              aria-current="page"
+            >
               {" "}
               <svg
                 className="bi pe-none me-2"
@@ -39,9 +45,14 @@ const Sidebar = () => {
               Home
             </a>{" "}
           </li>{" "}
-          <li>
+          <li onClick={() => setSelectedTab("Create Post")}>
             {" "}
-            <a href="#" className="nav-link text-white">
+            <a
+              href="#"
+              className={`nav-link text-white ${
+                selectedTab === "Create Post" && "active"
+              }`}
+            >
               {" "}
               <svg
                 className="bi pe-none me-2"
@@ -51,52 +62,7 @@ const Sidebar = () => {
               >
                 <use xlinkHref="#speedometer2"></use>
               </svg>
-              Dashboard
-            </a>{" "}
-          </li>{" "}
-          <li>
-            {" "}
-            <a href="#" className="nav-link text-white">
-              {" "}
-              <svg
-                className="bi pe-none me-2"
-                width="16"
-                height="16"
-                aria-hidden="true"
-              >
-                <use xlinkHref="#table"></use>
-              </svg>
-              Orders
-            </a>{" "}
-          </li>{" "}
-          <li>
-            {" "}
-            <a href="#" className="nav-link text-white">
-              {" "}
-              <svg
-                className="bi pe-none me-2"
-                width="16"
-                height="16"
-                aria-hidden="true"
-              >
-                <use xlinkHref="#grid"></use>
-              </svg>
-              Products
-            </a>{" "}
-          </li>{" "}
-          <li>
-            {" "}
-            <a href="#" className="nav-link text-white">
-              {" "}
-              <svg
-                className="bi pe-none me-2"
-                width="16"
-                height="16"
-                aria-hidden="true"
-              >
-                <use xlinkHref="#people-circle"></use>
-              </svg>
-              Customers
+              Create Post
             </a>{" "}
           </li>{" "}
         </ul>{" "}

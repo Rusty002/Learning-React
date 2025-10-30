@@ -8,6 +8,7 @@
 
 .sidebar{
     height: 800px;
+    width: "280px"
 }
 
 .post-card{
@@ -24,6 +25,7 @@
 }
 
 .create-post{
-    width: max-content;
-    margin: 25px;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 50px;
 }

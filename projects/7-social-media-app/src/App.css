@@ -9,3 +9,21 @@
 .sidebar{
     height: 800px;
 }
+
+.post-card{
+    width: 40rem;
+    margin: 20px 50px;
+}
+
+.hashtag{
+    margin: 0px 3px;
+}
+
+.reactions{
+   margin: 15px 0 0 0; 
+}
+
+.create-post{
+    width: max-content;
+    margin: 25px;
+}

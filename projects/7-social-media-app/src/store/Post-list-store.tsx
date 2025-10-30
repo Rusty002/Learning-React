@@ -6,7 +6,7 @@ const DEFAULT_POST_LIST = [
     title: "Going to Dubai",
     body: "Hi Friends, I am going to Dubai for my vacations. Hope to enjoy a lot, Peace out",
     reactions: 2,
-    userId: "",
+    userId: "user-9",
     tags: ["vacation", "Dubai", "Enjoying"],
   },
   {
@@ -14,7 +14,7 @@ const DEFAULT_POST_LIST = [
     title: "Going to Turkey",
     body: "Hi Friends, I am going to Turkey for my vacations. Hope to enjoy a lot, Peace out",
     reactions: 3,
-    userId: "",
+    userId: "user-4",
     tags: ["vacation", "Turkey", "Enjoying"],
   },
   {
@@ -22,7 +22,7 @@ const DEFAULT_POST_LIST = [
     title: "Going to Bali",
     body: "Hi Friends, I am going to Bali for my vacations. Hope to enjoy a lot, Peace out",
     reactions: 8,
-    userId: "",
+    userId: "user-12",
     tags: ["vacation", "Bali", "Enjoying"],
   },
 ];
@@ -34,13 +34,25 @@ export const PostList = createContext({
 });
 
 const postListReducer = (currPostList: any, action: any) => {
-  return currPostList;
+  let newPostList = currPostList;
+  if (action.type === "DELETE_POST") {
+    newPostList = currPostList.filter((p) => p.id !== action.payload.postId);
+  }
+
+  return newPostList;
 };
 
 const PostListProvider = ({ children }: any) => {
   const addPost = () => {};
 
-  const deletePost = () => {};
+  const deletePost = (postId) => {
+    dispatchPostList({
+      type: "DELETE_POST",
+      payload: {
+        postId,
+      },
+    });
+  };
 
   const [postList, dispatchPostList] = useReducer(
     postListReducer,

@@ -1,10 +1,17 @@
-import { createContext, useCallback, useMemo, useReducer } from "react";
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useReducer,
+  useState,
+} from "react";
 
 export const PostList = createContext({
   postList: [],
+  fetchData: false,
   addPost: () => {},
   deletePost: () => {},
-  addInitialPosts: () => {},
 });
 
 const postListReducer = (currPostList: any, action: any) => {
@@ -22,24 +29,12 @@ const postListReducer = (currPostList: any, action: any) => {
 
 const PostListProvider = ({ children }: any) => {
   const [postList, dispatchPostList] = useReducer(postListReducer, []);
+  const [fetchData, setFetchData] = useState(false);
 
-  const addPost = (
-    userId: any,
-    postTitle: any,
-    postBody: any,
-    reactions: any,
-    tags: any
-  ) => {
+  const addPost = (post: any) => {
     dispatchPostList({
       type: "ADD_POST",
-      payload: {
-        id: Date.now(),
-        title: postTitle,
-        body: postBody,
-        reactions: reactions,
-        userId: userId,
-        tags: tags,
-      },
+      payload: post,
     });
   };
 
@@ -51,6 +46,7 @@ const PostListProvider = ({ children }: any) => {
       },
     });
   };
+
   const deletePost = useCallback(
     (postId) => {
       dispatchPostList({
@@ -63,6 +59,23 @@ const PostListProvider = ({ children }: any) => {
     [dispatchPostList]
   );
 
+  useEffect(() => {
+    setFetchData(true);
+
+    const controller = new AbortController();
+    const signal = controller.signal;
+    fetch("https://dummyjson.com/posts", { signal })
+      .then((res) => res.json())
+      .then((data) => {
+        addInitialPosts(data.posts);
+        setFetchData(false);
+      });
+
+    return () => {
+      //controller.abort();
+    };
+  }, []);
+
   const arr = [2, 5, 3, 1, 0];
   const sortedArray = useMemo(() => arr.sort(), [arr]);
 
@@ -70,9 +83,9 @@ const PostListProvider = ({ children }: any) => {
     <PostList.Provider
       value={{
         postList,
+        fetchData,
         addPost,
         deletePost,
-        addInitialPosts,
       }}
     >
       {children}

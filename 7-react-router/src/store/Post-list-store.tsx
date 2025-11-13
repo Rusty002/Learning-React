@@ -1,15 +1,7 @@
-import {
-  createContext,
-  useCallback,
-  useEffect,
-  useMemo,
-  useReducer,
-  useState,
-} from "react";
+import { createContext, useCallback, useReducer } from "react";
 
 export const PostList = createContext({
   postList: [],
-  fetchData: false,
   addPost: () => {},
   deletePost: () => {},
 });
@@ -29,7 +21,6 @@ const postListReducer = (currPostList: any, action: any) => {
 
 const PostListProvider = ({ children }: any) => {
   const [postList, dispatchPostList] = useReducer(postListReducer, []);
-  const [fetchData, setFetchData] = useState(false);
 
   const addPost = (post: any) => {
     dispatchPostList({
@@ -59,31 +50,10 @@ const PostListProvider = ({ children }: any) => {
     [dispatchPostList]
   );
 
-  useEffect(() => {
-    setFetchData(true);
-
-    const controller = new AbortController();
-    const signal = controller.signal;
-    fetch("https://dummyjson.com/posts", { signal })
-      .then((res) => res.json())
-      .then((data) => {
-        addInitialPosts(data.posts);
-        setFetchData(false);
-      });
-
-    return () => {
-      //controller.abort();
-    };
-  }, []);
-
-  const arr = [2, 5, 3, 1, 0];
-  const sortedArray = useMemo(() => arr.sort(), [arr]);
-
   return (
     <PostList.Provider
       value={{
         postList,
-        fetchData,
         addPost,
         deletePost,
       }}

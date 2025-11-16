@@ -13,6 +13,10 @@ const Controls = () => {
     dispatch({ type: "DECREMENT" });
   };
 
+  const handlePrivacyToggle = () => {
+    dispatch({ type: "PRIVACY_TOGGLE" });
+  };
+
   const handleAdd = () => {
     dispatch({ type: "ADD", payload: { number: inputElement.current.value } });
     inputElement.current.value = "";
@@ -44,7 +48,11 @@ const Controls = () => {
         >
           - 1
         </button>{" "}
-        <button type="button" className="btn btn-warning">
+        <button
+          type="button"
+          className="btn btn-warning"
+          onClick={handlePrivacyToggle}
+        >
           Privacy Toggle
         </button>
       </div>

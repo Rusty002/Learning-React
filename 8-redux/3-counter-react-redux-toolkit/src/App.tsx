@@ -8,14 +8,14 @@ import DisplayCounter from "./components/DisplayCounter";
 import PrivacyMessage from "./components/PrivacyMessage";
 
 function App() {
-  const privacyCheckEnabled = useSelector((store) => store.privacy);
+  const privacyVal = useSelector((store) => store.privacy);
 
   return (
     <div className="px-4 py-5 my-5 text-center">
       <Container>
         <Header></Header>
         <div className="col-lg-6 mx-auto">
-          {privacyCheckEnabled ? <PrivacyMessage /> : <DisplayCounter />}
+          {privacyVal ? <PrivacyMessage /> : <DisplayCounter />}
           <Controls></Controls>
         </div>
       </Container>

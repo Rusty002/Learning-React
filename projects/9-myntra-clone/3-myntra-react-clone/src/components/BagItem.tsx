@@ -1,4 +1,12 @@
+import { useDispatch } from "react-redux";
+import { bagActions } from "../store/bagslice";
+import { TiDelete } from "react-icons/ti";
+
 const BagItem = ({ item }: any) => {
+  const dispatch = useDispatch();
+  const handleRemoveItem = () => {
+    dispatch(bagActions.removeFromBag(item.id));
+  };
   return (
     <div className="bag-item-container">
       <div className="item-left-part">
@@ -24,11 +32,8 @@ const BagItem = ({ item }: any) => {
         </div>
       </div>
 
-      <div
-        className="remove-from-cart"
-        onClick={() => console.log("Cross Clicked")}
-      >
-        X
+      <div className="remove-from-cart" onClick={handleRemoveItem}>
+        <TiDelete />
       </div>
     </div>
   );

@@ -1,10 +1,32 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./routes/App.tsx";
+import { createBrowserRouter } from "react-router";
+import { RouterProvider } from "react-router/dom";
+import Bag from "./routes/Bag.tsx";
+import Home from "./routes/Home.tsx";
+import { Provider } from "react-redux";
+import myntraStore from "./store/index.ts";
 
-createRoot(document.getElementById('root')!).render(
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      { path: "/", element: <Home /> },
+      {
+        path: "/bag",
+        element: <Bag />,
+      },
+    ],
+  },
+]);
+
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    <Provider store={myntraStore}>
+      <RouterProvider router={router} />
+    </Provider>
+  </StrictMode>
+);

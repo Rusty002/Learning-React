@@ -1,14 +1,19 @@
+import { BsPersonCircle } from "react-icons/bs";
+import { FaHeartbeat } from "react-icons/fa";
+import { FaBagShopping } from "react-icons/fa6";
+import { Link } from "react-router";
+
 const Header = () => {
   return (
     <header>
       <div className="logo_container">
-        <a href="#">
+        <Link to={"/"}>
           <img
             className="myntra_home"
             src="images/myntra_logo.webp"
             alt="Myntra Home"
           />
-        </a>
+        </Link>
       </div>
       <nav className="nav_bar">
         <a href="#">Men</a>
@@ -29,17 +34,20 @@ const Header = () => {
       </div>
       <div className="action_bar">
         <div className="action_container">
+          <BsPersonCircle />
           <span className="action_name">Profile</span>
         </div>
 
         <div className="action_container">
+          <FaHeartbeat />
           <span className="action_name">Wishlist</span>
         </div>
 
-        <a className="action_container" href="#">
+        <Link className="action_container" to={"/bag"}>
+          <FaBagShopping />
           <span className="action_name">Bag</span>
           <span className="bag-item-count">0</span>
-        </a>
+        </Link>
       </div>
     </header>
   );

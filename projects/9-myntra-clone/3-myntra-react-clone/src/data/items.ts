@@ -1,4 +1,4 @@
-const items = [
+const DEFAULT_ITEMS = [
     {
         id: '001',
         image: 'images/1.jpg',
@@ -12,36 +12,6 @@ const items = [
         rating: {
             stars: 4.5,
             count: 1400,
-        },
-    },
-    {
-        id: '002',
-        image: 'images/2.jpg',
-        company: 'CUKOO',
-        item_name: 'Women Padded Halter Neck Swimming Dress',
-        original_price: 2599,
-        current_price: 1507,
-        discount_percentage: 42,
-        return_period: 14,
-        delivery_date: '10 Oct 2023',
-        rating: {
-            stars: 4.3,
-            count: 24,
-        },
-    },
-    {
-        id: '003',
-        image: 'images/3.jpg',
-        company: 'NUEVOSDAMAS',
-        item_name: 'Women Red & White Printed A-Line Knee-Length Skirts',
-        original_price: 1599,
-        current_price: 495,
-        discount_percentage: 69,
-        return_period: 14,
-        delivery_date: '10 Oct 2023',
-        rating: {
-            stars: 4.1,
-            count: 249,
         },
     },
     {
@@ -118,3 +88,5 @@ const items = [
         },
     }
 ];
+
+export default DEFAULT_ITEMS;

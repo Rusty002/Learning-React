@@ -9,7 +9,7 @@ const BagSummary = () => {
     <div className="bag-summary">
       <div className="bag-details-container">
         <div className="price-header">
-          PRICE DETAILS {bagSummary.totalItem} Items
+          Price Details {bagSummary.totalItem} Items
         </div>
         <div className="price-item">
           <span className="price-item-tag">Total MRP</span>
